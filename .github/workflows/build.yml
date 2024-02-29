@@ -1,0 +1,44 @@
+# Format, lint, and test on open PRs
+
+name: Build
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python.poetry.org | python3 -
+          poetry config virtualenvs.in-project true
+      
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11.4"
+          cache: "poetry"
+      
+      - name: Install dependencies
+        run: |
+          poetry install
+          poetry env info
+      
+      - name: Poetry Check
+        run: |
+          poetry check
+      
+      - name: Ruff Format and Lint
+        run: |
+          poetry run ruff format .
+          poetry run ruff check .
+      
+      - name: Test
+        run: |
+          poetry run pytest
