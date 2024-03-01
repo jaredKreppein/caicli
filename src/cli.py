@@ -1,11 +1,7 @@
 import argparse
 
 
-def main(lat: str, long: str) -> str:
-    return f"Latitude: {lat}, Longitude: {long}"
-
-
-if __name__ == "__main__":
+def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="CAICLI",
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -14,6 +10,22 @@ if __name__ == "__main__":
     parser.add_argument("latitude", type=float, help="latitude coordinate")
     parser.add_argument("longitude", type=float, help="longitude coordinate")
     parser.add_argument("-v", "--version", action="version", version="%(prog)s 0.1.0")
-    args = parser.parse_args()
+    return parser
 
-    print(main(args.latitude, args.longitude))
+
+def parse(argv: list[str]) -> argparse.Namespace:
+    parser = create_parser()
+    return parser.parse_args(argv)
+
+
+def coordinates(lat: str, long: str) -> str:
+    return f"Latitude: {lat}, Longitude: {long}"
+
+
+def main(argv=None):
+    parser = parse(argv)
+    print(coordinates(parser.latitude, parser.longitude))
+
+
+if __name__ == "__main__":  # pragma: no cover
+    main()

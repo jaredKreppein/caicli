@@ -9,7 +9,6 @@ This repo uses Python `3.11.4`.
 ```bash
 # install pyenv or use whatever version manager you prefer
 brew install pyenv
-pyenv install
 
 # install poetry
 curl -sSL https://install.python-poetry.org | python3 -
@@ -19,22 +18,29 @@ pyenv install
 poetry install
 ```
 
-Formatting
+#### Linting & Formatting
+
+Uses [Ruff](https://github.com/astral-sh/ruff), a Python linter/formatter written in Rust.
 
 ```bash
-# optionally add --fix for ruff to fix for you
+# run the formatter on all files
 poetry run ruff format .
+
+# check all files, add --fix to autofix issues
 poetry run ruff check .
 ```
 
-Running the CLI
-
-```bash
-poetry run python src/cli.py <args>
-```
-
-Testing
+#### Testing & Coverage
 
 ```bash
 poetry run pytest
+
+# include missing
+poetry run pytest --cov-report term-missing
+```
+
+#### Running the CLI
+
+```bash
+poetry run main <args>
 ```
