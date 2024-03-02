@@ -27,7 +27,10 @@ required_plugins = [
 	"pytest-cov",
 	"pytest-mock"
 ]
-addopts = "-n auto --cov=src --cov-fail-under=100"
+addopts = "-n auto --cov=src"
+
+# TODO: we can decide to add back fail under if desired
+# addopts = "-n auto --cov=src --cov-fail-under=100"
 
 [tool.coverage.report]
 fail_under = "100"
