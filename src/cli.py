@@ -1,5 +1,12 @@
 import argparse
 
+from .api.client import (
+    getAvalancheData,
+    getAvalancheForecasts,
+    getAvalancheProblemsByDay,
+    getDangerRatingByDay,
+)
+
 
 def create_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -25,6 +32,17 @@ def coordinates(lat: str, long: str) -> str:
 def main(argv=None):
     parser = parse(argv)
     print(coordinates(parser.latitude, parser.longitude))
+
+    avalanche_data = getAvalancheData()
+    # print(avalanche_data)
+    forecasts = getAvalancheForecasts(avalanche_data)
+    print(len(forecasts))
+    forecast = forecasts[0]
+    getDangerRatingByDay(forecast)
+    getAvalancheProblemsByDay(forecast)
+
+    # # want = resp[4]["dangerRatings"]["days"][0]
+    # print(json.dumps(resp, indent=2))
 
 
 if __name__ == "__main__":  # pragma: no cover
