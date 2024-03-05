@@ -2,7 +2,7 @@
 name = "caicli"
 version = "0.1.0"
 description = "Python CLI for retrieving avalanche and weather forecasts from the CAIC"
-authors = ["Jared Kreppein <jaredkrep@gmail.com>"]
+authors = ["Jared Kreppein <jaredkrep@gmail.com>", "Cole Polyak <colepolyak@gmail.com>"]
 license = "MIT"
 readme = "README.md"
 packages = [{include = "src"}]
