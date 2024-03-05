@@ -1,4 +1,3 @@
-
 class Area:
     def __init__(self, id, polygons):
         self.id = id
