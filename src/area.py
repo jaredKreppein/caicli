@@ -5,7 +5,4 @@ class Area:
         self.type = type
 
     def contains(self, point):
-        for polygon in self.polygons:
-            if polygon.contains(point):
-                return True
-        return False
+        return any(polygon.contains(point) for polygon in self.polygons)

@@ -47,8 +47,8 @@ def test_get_id_methods_http_failure(mocker):
     mocker.patch("requests.get", return_value=mock_response)
     test_point = Point(0.5, 0.5)
     point_area_id = processor.get_avalanche_area_id(test_point)
-    assert point_area_id == None
+    assert point_area_id is None
     point_area_id = processor.get_special_product_id(test_point)
-    assert point_area_id == None
+    assert point_area_id is None
     point_area_id = processor.get_regional_discussion_id(test_point)
-    assert point_area_id == None
+    assert point_area_id is None
