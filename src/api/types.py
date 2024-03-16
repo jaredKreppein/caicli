@@ -13,7 +13,6 @@ class BaseModel(PydanticBaseModel):
 
     alias_generator = to_camel
     use_enum_values = True
-    allow_population_by_field_name
 
 
 class BaseProduct(BaseModel):
@@ -42,6 +41,7 @@ class Communication(BaseModel):
     headline: str
     sms: ""
 
+
 class Image(BaseModel):
     id: str
     url: str
@@ -51,19 +51,23 @@ class Image(BaseModel):
     caption: str
     tag: str
 
+
 class Media(BaseModel):
     # note that Images is captialized in snake and camel case
     Images: list[Image]
 
+
 class DangerRatingDay(BaseModel):
     position: int
-    alp: str    # alpine / above treeline
-    tln: str    # treeline
-    btl: str    # below treeline
+    alp: str  # alpine / above treeline
+    tln: str  # treeline
+    btl: str  # below treeline
     date: str
 
+
 class DangerRatings(BaseModel):
-    """ days a 3 item array for [today, tomorrow, day_after] """
+    """days a 3 item array for [today, tomorrow, day_after]"""
+
     days: DangerRatingDay * 3
 
 
@@ -98,5 +102,6 @@ class SpecialProductType(Enum):
     SPECIAL_ADVISORY = "specialAdvisory"
     WARNING = "warning"
     WATCH = "watch"
+
 
 # class AspectElevation(Enum):
